@@ -34,7 +34,11 @@ function App() {
   }, [query])
 
   return (
-    <div className="App">
+    <div className='App'>
+      <div className='title'>
+        <h1>Recipeez<br/></h1>
+        <h2>Find cooking inspiration, find recipes the easy way !</h2>
+      </div>
       <form className='search-form' onSubmit={getSearch}>
         <input
           className='search-bar'
@@ -42,17 +46,19 @@ function App() {
           value={search}
           onChange={updateSearch}
         />
-        <button className='search-button' type='submit'>Search</button>
+        <button className='search-button' type='submit'>Search recipes</button>
       </form>
-      {recipes.map(recipe => (
-        <Recipe
-          key={recipe.recipe.uri}
-          title={recipe.recipe.label}
-          calories={recipe.recipe.calories}
-          image={recipe.recipe.image}
-          ingredients={recipe.recipe.ingredients} 
-        />
-      ))}
+      <div className='recipes'>
+        {recipes.map(recipe => (
+          <Recipe
+            key={recipe.recipe.uri}
+            title={recipe.recipe.label}
+            calories={Math.floor(recipe.recipe.calories)}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients} 
+          />
+        ))}
+      </div>
     </div>
   );
 }
